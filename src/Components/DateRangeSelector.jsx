@@ -21,7 +21,7 @@ const DateRangeSelector = () => {
         endDate={endDate}
         selectsRange
         customInput={
-          <button className="flex items-center gap-3 bg-[#1d1d29] px-5 py-1 border border-white/10 rounded-md text-xs font-medium text-gray-300 hover:bg-white/5 transition-all">
+          <button className=" hidden md:flex items-center gap-3 bg-[#1d1d29] px-5 py-1 border border-white/10 rounded-md text-xs font-medium text-gray-300 hover:bg-white/5 transition-all">
             <span>
               {startDate.toLocaleDateString("de-DE")} -{" "}
               {endDate?.toLocaleDateString("de-DE")}

@@ -7,9 +7,12 @@ import {
   User,
   Settings,
   LogOut,
+  Menu,
 } from "lucide-react";
 
-const Sidebar = () => {
+const Sidebar = ({ menuOpen, setMenuOpen }) => {
+  const handleMenu = () => setMenuOpen(false);
+
   const menuItems = [
     { name: "Analytics", icon: <LayoutDashboard size={20} />, active: true },
     { name: "Products", icon: <ShoppingBag size={20} />, active: false },
@@ -19,7 +22,8 @@ const Sidebar = () => {
 
   return (
     <div className="border border-amber-800 h-full p-6 flex flex-col">
-        <div className="flex items-center mb-10">
+      <div className="flex justify-between items-center mb-10">
+        <div className="flex items-center">
           <div className="w-14 h-14 flex items-center ">
             <img
               src={Logo}
@@ -27,8 +31,14 @@ const Sidebar = () => {
               className="w-full h-auto object-contain"
             />
           </div>
-          <h2 className="text-2xl font-light tracking-wide -ml-3">Flux Dash</h2>
+          <h2 className="text-2xl md:text-lg font-light tracking-wide -ml-3">Flux Dash</h2>
         </div>
+        <div className="md:hidden">
+          <button onClick={() => handleMenu()}>
+            <Menu size={18} />
+          </button>
+        </div>
+      </div>
       <nav className="space-y-2">
         {menuItems.map((item) => (
           <div

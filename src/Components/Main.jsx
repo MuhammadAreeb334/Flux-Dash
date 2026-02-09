@@ -1,11 +1,83 @@
-import React from 'react'
+import React from "react";
+import { Copy, CheckSquare, DollarSign, CreditCard } from "lucide-react";
+import StartCard from "./StartCard";
+import MetricCircleCard from "./MetricCircleCard";
+import SalesDynamics from "./SalesDynamics";
 
 const Main = () => {
-  return (
-    <div className='border border-blue-700'>
-      Main Container
-    </div>
-  )
-}
+  const stats = [
+    {
+      title: "Order",
+      value: "201",
+      trend: "8.2%",
+      isUp: true,
+      icon: <Copy size={18} />,
+    },
+    {
+      title: "Approved",
+      value: "36",
+      trend: "3.4%",
+      isUp: true,
+      icon: <CheckSquare size={18} />,
+    },
+    {
+      title: "Month Total",
+      value: "25410",
+      trend: "0.2%",
+      isUp: false,
+      icon: <DollarSign size={18} />,
+    },
+    {
+      title: "Revenue",
+      value: "1352",
+      trend: "1.2%",
+      isUp: false,
+      icon: <CreditCard size={18} />,
+    },
+  ];
 
-export default Main
+  const userData = [
+    { name: "New", value: 62 },
+    { name: "Returning", value: 26 },
+    { name: "Inactive", value: 12 },
+  ];
+  const userColors = ["#F59E0B", "#FCD34D", "#78350F"];
+
+  const subData = [
+    { name: "Paid", value: 70 },
+    { name: "Trial", value: 30 },
+  ];
+  const subColors = ["#3B82F6", "#1E3A8A"];
+
+  return (
+    <div className="border border-amber-100">
+      <div className="grid grid-cols-1 lg:grid-cols-4 gap-4">
+        <div className="grid grid-cols-1 [@media(min-width:450px)]:grid-cols-2 gap-4 lg:col-span-2">
+          {stats.map((stat, index) => (
+            <StartCard key={index} {...stat} />
+          ))}
+        </div>
+
+        <div className="grid grid-cols-1 [@media(min-width:450px)]:grid-cols-2 lg:col-span-2 gap-4">
+          <MetricCircleCard
+            title="Users"
+            value="4,890"
+            data={userData}
+            colors={userColors}
+          />
+          <MetricCircleCard
+            title="Subscriptions"
+            value="1,201"
+            data={subData}
+            colors={subColors}
+          />
+        </div>
+      </div>
+      <div className="grid grid-cols-1 lg:grid-cols-2">
+        <SalesDynamics />
+      </div>
+    </div>
+  );
+};
+
+export default Main;
