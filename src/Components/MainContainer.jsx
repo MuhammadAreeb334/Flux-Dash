@@ -1,10 +1,20 @@
 import React from "react";
-import { Copy, CheckSquare, DollarSign, CreditCard } from "lucide-react";
+import {
+  Copy,
+  CheckSquare,
+  DollarSign,
+  CreditCard,
+  Wallet,
+  Briefcase,
+} from "lucide-react";
 import StartCard from "./StartCard";
 import MetricCircleCard from "./MetricCircleCard";
 import SalesDynamics from "./SalesDynamics";
+import FinanceCard from "./FinanceCard";
+import OverallUserActivity from "./OverallUserActivity";
+import CustomerOrder from "./CustomerOrder";
 
-const Main = () => {
+const MainContainer = () => {
   const stats = [
     {
       title: "Order",
@@ -41,7 +51,7 @@ const Main = () => {
     { name: "Returning", value: 26 },
     { name: "Inactive", value: 12 },
   ];
-  const userColors = ["#F59E0B", "#FCD34D", "#78350F"];
+  const userColors = ["#F59E0B", "#FCD34D", "#ffe18c"];
 
   const subData = [
     { name: "Paid", value: 70 },
@@ -50,9 +60,9 @@ const Main = () => {
   const subColors = ["#3B82F6", "#1E3A8A"];
 
   return (
-    <div className="border border-amber-100">
+    <div className="">
       <div className="grid grid-cols-1 lg:grid-cols-4 gap-4">
-        <div className="grid grid-cols-1 [@media(min-width:450px)]:grid-cols-2 gap-4 lg:col-span-2">
+        <div className="grid grid-cols-1 [@media(min-width:450px)]:grid-cols-2 lg:col-span-2 gap-4">
           {stats.map((stat, index) => (
             <StartCard key={index} {...stat} />
           ))}
@@ -72,12 +82,38 @@ const Main = () => {
             colors={subColors}
           />
         </div>
-      </div>
-      <div className="grid grid-cols-1 lg:grid-cols-2">
-        <SalesDynamics />
+        <div className="lg:col-span-2">
+          <div className="mb-5">
+            <SalesDynamics />
+          </div>
+          <div>
+            <OverallUserActivity />
+          </div>
+        </div>
+
+        <div className="grid grid-cols-1 [@media(min-width:450px)]:grid-cols-2 lg:col-span-2 gap-4">
+          <FinanceCard
+            title="Paid Invoices"
+            amount="$30256.23"
+            percentage={15}
+            color="#a855f7"
+            icon={<Wallet />}
+          />
+          <FinanceCard
+            title="Funds Received"
+            amount="$150256.23"
+            percentage={59}
+            color="#22c55e"
+            icon={<Briefcase />}
+          />
+          
+          <div className="[@media(min-width:450px)]:col-span-2">
+            <CustomerOrder />
+          </div>
+        </div>
       </div>
     </div>
   );
 };
 
-export default Main;
+export default MainContainer;

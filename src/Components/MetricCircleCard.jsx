@@ -40,6 +40,8 @@ const MetricCircleCard = ({ title, value, data, colors }) => {
             innerRadius={40}
             outerRadius={70}
             paddingAngle={4}
+            startAngle={90}
+            endAngle={-450}
             stroke="none"
           >
             {data.map((_, index) => (

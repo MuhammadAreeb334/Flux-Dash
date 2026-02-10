@@ -1,45 +1,51 @@
 import React from "react";
 import {
-  BarChart,
-  Bar,
+  Area,
+  AreaChart,
+  Brush,
+  ResponsiveContainer,
+  Tooltip,
   XAxis,
   YAxis,
-  CartesianGrid,
-  Tooltip,
-  ResponsiveContainer,
-  Cell,
 } from "recharts";
 
-const SalesDynamics = () => {
+const OverallUserActivity = () => {
   const data = [
-    { name: "JAN", value: 210 },
-    { name: "FEB", value: 160 },
-    { name: "MAR", value: 230 },
-    { name: "APR", value: 195 },
-    { name: "MAY", value: 270 },
-    { name: "JUN", value: 210 },
-    { name: "JUL", value: 215 },
-    { name: "AUG", value: 70 },
-    { name: "SEP", value: 230 },
-    { name: "OCT", value: 260 },
-    { name: "NOV", value: 310 },
-    { name: "DEC", value: 380 },
+    { name: "Jan", uv: 180 },
+    { name: "Feb", uv: 220 },
+    { name: "Mar", uv: 190 },
+    { name: "Apr", uv: 280 },
+    { name: "May", uv: 250 },
+    { name: "Jun", uv: 310 },
+    { name: "Jul", uv: 290 },
+    { name: "Aug", uv: 210 },
+    { name: "Sep", uv: 267 },
+    { name: "Oct", uv: 270 },
+    { name: "Nov", uv: 340 },
+    { name: "Dec", uv: 380 },
   ];
+
   return (
     <div className="">
       <div className="bg-[#1d1d29] p-2 sm:p-4 rounded-2xl lg:col-span-2">
         <div className="flex justify-between items-center mb-8">
-          <h3 className="text-white font-medium">Sales dynamics</h3>
+          <h3 className="text-white font-medium">Overall User Activity</h3>
           <select className="bg-transparent text-gray-400 text-sm border-none outline-none cursor-pointer">
             <option>2021</option>
           </select>
         </div>
         <div className="h-[200px] w-full">
           <ResponsiveContainer width="100%" height="100%">
-            <BarChart
+            <AreaChart
               data={data}
-              margin={{ top: 0, right: 0, left: -20, bottom: 0 }}
+              margin={{ top: 10, right: 10, left: -20, bottom: 0 }}
             >
+              <defs>
+                <linearGradient id="colorUv" x1="0" y1="0" x2="0" y2="1">
+                  <stop offset="5%" stopColor="#a855f7" stopOpacity={0.3} />
+                  <stop offset="95%" stopColor="#a855f7" stopOpacity={0} />
+                </linearGradient>
+              </defs>
               <XAxis
                 dataKey="name"
                 axisLine={false}
@@ -55,7 +61,6 @@ const SalesDynamics = () => {
                 tickFormatter={(value) => `${value}k`}
               />
               <Tooltip
-                cursor={{ fill: "transparent" }}
                 contentStyle={{
                   backgroundColor: "#1d1d29",
                   border: "none",
@@ -63,14 +68,16 @@ const SalesDynamics = () => {
                 }}
                 itemStyle={{ color: "#fff" }}
               />
-              <Bar
-                dataKey="value"
-                fill="#3b82f6"
-                radius={[10, 10, 10, 10]}
-                barSize={12}
-                background={{ fill: "#ffffff", radius: 10 }}
+              <Area
+                type="monotone"
+                dataKey="uv"
+                stroke="#a855f7"
+                strokeWidth={3}
+                fillOpacity={1}
+                fill="url(#colorUv)"
               />
-            </BarChart>
+              {/* <Brush dataKey="name" height={20} stroke="#8884d8" /> */}
+            </AreaChart>
           </ResponsiveContainer>
         </div>
       </div>
@@ -78,4 +85,4 @@ const SalesDynamics = () => {
   );
 };
 
-export default SalesDynamics;
+export default OverallUserActivity;

@@ -1,11 +1,10 @@
-import React, { useState } from "react";
 import Sidebar from "../Components/Sidebar";
+import React, { useState } from "react";
 import Topbar from "../Components/Topbar";
-import Main from "../Components/Main";
+import UserMain from "../Components/UserMain";
 
-const Home = () => {
+const UserPage = () => {
   const [menuOpen, setMenuOpen] = useState(false);
-
   return (
     <div className="flex h-screen overflow-hidden [&::-webkit-scrollbar]:hidden">
       <aside
@@ -19,15 +18,12 @@ const Home = () => {
       {menuOpen && <div className="[&::-webkit-scrollbar]:hidden fixed inset-0 bg-black/40 z-30 md:hidden" onClick={() => setMenuOpen(false)} />}
       <div className="flex flex-col flex-1 bg-[#12121e] text-white ">
         <Topbar menuOpen={menuOpen} setMenuOpen={setMenuOpen} />
-        <main className="flex-1 overflow-y-auto p-6">
-          <Main />
+        <main className="flex-1 overflow-y-auto p-6 [&::-webkit-scrollbar]:hidden">
+          <UserMain />
         </main>
       </div>
     </div>
   );
 };
 
-export default Home;
-
-//#1d1d29 side
-// #12121e main
+export default UserPage;

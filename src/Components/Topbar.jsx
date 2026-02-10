@@ -8,7 +8,7 @@ const Topbar = ({ menuOpen, setMenuOpen }) => {
   console.log(menuOpen)
 
   return (
-    <div className="border border-red-300 p-3 md:p-6">
+    <div className="p-3 md:p-6">
       <div className="flex items-center justify-between">
         <div className="flex items-center gap-2 md:items-end md:gap-14">
           <button className="md:hidden" onClick={() => handleMenu()}>
