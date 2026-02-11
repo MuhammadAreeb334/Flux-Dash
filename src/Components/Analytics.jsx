@@ -14,7 +14,7 @@ import FinanceCard from "./FinanceCard";
 import OverallUserActivity from "./OverallUserActivity";
 import CustomerOrder from "./CustomerOrder";
 
-const MainContainer = () => {
+const Analytics = () => {
   const stats = [
     {
       title: "Order",
@@ -116,4 +116,4 @@ const MainContainer = () => {
   );
 };
 
-export default MainContainer;
+export default Analytics;

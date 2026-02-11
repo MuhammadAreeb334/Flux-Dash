@@ -1,10 +1,21 @@
 import React, { useState } from "react";
 import Sidebar from "../Components/Sidebar";
 import Topbar from "../Components/Topbar";
-import MainContainer from "../Components/MainContainer";
+import { Outlet, useLocation } from "react-router-dom";
 
-const Dashbaord = () => {
+const Home = () => {
   const [menuOpen, setMenuOpen] = useState(false);
+  const location = useLocation();
+
+  const pageTitle = {
+    "/": "Analytics",
+    "/user": "Users",
+    "/messages": "Messages",
+    "/customers": "Customers",
+  };
+
+  const title =
+    pageTitle[location.pathname] || location.pathname.split("/").pop();
 
   return (
     <div className="flex h-screen overflow-hidden [&::-webkit-scrollbar]:hidden">
@@ -16,18 +27,23 @@ const Dashbaord = () => {
         <Sidebar menuOpen={menuOpen} setMenuOpen={setMenuOpen} />
       </aside>
 
-      {menuOpen && <div className="[&::-webkit-scrollbar]:hidden fixed inset-0 bg-black/40 z-30 md:hidden" onClick={() => setMenuOpen(false)} />}
+      {menuOpen && (
+        <div
+          className="[&::-webkit-scrollbar]:hidden fixed inset-0 bg-black/40 z-30 md:hidden"
+          onClick={() => setMenuOpen(false)}
+        />
+      )}
       <div className="flex flex-col flex-1 bg-[#12121e] text-white ">
-        <Topbar menuOpen={menuOpen} setMenuOpen={setMenuOpen} />
+        <Topbar menuOpen={menuOpen} setMenuOpen={setMenuOpen} title={title} />
         <main className="flex-1 overflow-y-auto p-6 [&::-webkit-scrollbar]:hidden">
-          <MainContainer />
+          <Outlet />
         </main>
       </div>
     </div>
   );
 };
 
-export default Dashbaord;
+export default Home;
 
 //#1d1d29 side
 // #12121e main
