@@ -7,18 +7,19 @@ const Home = () => {
   const [menuOpen, setMenuOpen] = useState(false);
   const location = useLocation();
 
-  const pageTitle = {
-    "/": "Analytics",
-    "/user": "Users",
-    "/messages": "Messages",
-    "/customers": "Customers",
-  };
+  // const pageTitle = {
+  //   "/": "Analytics",
+  //   "/user": "Users",
+  //   "/messages": "Messages",
+  //   "/customers": "Customers",
+  //   "/user/create": "Create User"
+  // };
 
-  const title =
-    pageTitle[location.pathname] || location.pathname.split("/").pop();
+  // const title =
+  //   pageTitle[location.pathname] || location.pathname.split("/").pop();
 
   return (
-    <div className="flex h-screen overflow-hidden [&::-webkit-scrollbar]:hidden">
+    <div className="flex h-screen bg-[#12121e] text-white overflow-hidden [&::-webkit-scrollbar]:hidden">
       <aside
         className={`fixed md:static top-0 left-0 z-40 w-[90%] md:w-[25%] lg:w-[18%] h-full [&::-webkit-scrollbar]:hidden
        bg-[#1d1d29] text-white transform transition-transform duration-300 
@@ -33,9 +34,11 @@ const Home = () => {
           onClick={() => setMenuOpen(false)}
         />
       )}
-      <div className="flex flex-col flex-1 bg-[#12121e] text-white ">
-        <Topbar menuOpen={menuOpen} setMenuOpen={setMenuOpen} title={title} />
-        <main className="flex-1 overflow-y-auto p-6 [&::-webkit-scrollbar]:hidden">
+      <div className="flex flex-col flex-1 min-h-0 min-w-0 bg-[#12121e] text-white">
+        <div className="flex-shrink-0 sticky top-0 z-20 bg-[#12121e]">
+          <Topbar menuOpen={menuOpen} setMenuOpen={setMenuOpen}  /> {/*title={title} */}
+        </div>
+        <main className="flex-1 overflow-y-auto [&::-webkit-scrollbar]:hidden p-6">
           <Outlet />
         </main>
       </div>

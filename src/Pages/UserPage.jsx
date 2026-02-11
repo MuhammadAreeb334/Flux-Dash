@@ -1,10 +1,7 @@
+import UserContainer from "../Components/UserContainer";
 
 const UserPage = () => {
-  return (
-    <div>
-      User Page
-    </div>
-  );
+  return <UserContainer />;
 };
 
 export default UserPage;

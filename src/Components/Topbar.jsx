@@ -3,7 +3,7 @@ import DateRangeSelector from "./DateRangeSelector";
 import { Menu } from "lucide-react";
 import Profile from "../Assets/Profile.jpg";
 
-const Topbar = ({ menuOpen, setMenuOpen, title }) => {
+const Topbar = ({ menuOpen, setMenuOpen }) => {
   const handleMenu = () => setMenuOpen(!menuOpen);
   console.log(menuOpen)
 
@@ -14,7 +14,7 @@ const Topbar = ({ menuOpen, setMenuOpen, title }) => {
           <button className="md:hidden" onClick={() => handleMenu()}>
             <Menu size={22} className="" />
           </button>
-          <h1 className=" text-lg md:text-3xl font-semibold tracking-tight">{title}</h1>
+          <h1 className=" text-lg md:text-3xl font-semibold tracking-tight">Dash Baord</h1> {/*{title} */}
           <DateRangeSelector />
         </div>
         <div className="flex items-center gap-2">
