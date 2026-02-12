@@ -1,6 +1,6 @@
 import React from "react";
 import Logo from "../Assets/Logo.png";
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import {
   LayoutDashboard,
   Users,
@@ -13,6 +13,13 @@ import {
 
 const Sidebar = ({ menuOpen, setMenuOpen }) => {
   const handleMenu = () => setMenuOpen(false);
+  const navigate = useNavigate()
+
+  const handleLogout = () => {
+    localStorage.removeItem("token");
+    localStorage.removeItem("user");
+    navigate("/login")
+  };
 
   const menuItems = [
     { name: "Analytics", icon: <LayoutDashboard size={20} />, path: "/" },
@@ -23,7 +30,6 @@ const Sidebar = ({ menuOpen, setMenuOpen }) => {
 
   return (
     <div className="h-full p-6 flex flex-col">
-      
       <div className="flex justify-between items-center mb-10">
         <div className="flex items-center">
           <div className="w-14 h-14 flex items-center">
@@ -45,13 +51,12 @@ const Sidebar = ({ menuOpen, setMenuOpen }) => {
         </div>
       </div>
 
-      
       <nav className="space-y-2">
         {menuItems.map((item) => (
           <NavLink
             key={item.name}
             to={item.path}
-            onClick={handleMenu} 
+            onClick={handleMenu}
             className={({ isActive }) =>
               `flex items-center gap-4 px-4 py-3 rounded-xl cursor-pointer transition-all ${
                 isActive
@@ -66,10 +71,8 @@ const Sidebar = ({ menuOpen, setMenuOpen }) => {
         ))}
       </nav>
 
-
       <div className="h-px bg-gray-300 my-4 w-full" />
 
-      
       <nav className="space-y-2">
         <NavLink
           to="/settings"
@@ -85,13 +88,20 @@ const Sidebar = ({ menuOpen, setMenuOpen }) => {
           <span className="text-sm">Settings</span>
         </NavLink>
 
-        <NavLink
-          to="/logout"
+        {/* <NavLink
+          to="/login"
           className="flex items-center gap-4 px-4 py-3 rounded-xl cursor-pointer transition-all text-gray-300 hover:text-white hover:bg-white/5"
         >
           <LogOut size={20} />
           <span className="text-sm">Sign Out</span>
-        </NavLink>
+        </NavLink> */}
+        <button
+          onClick={() => handleLogout()}
+          className="w-full flex items-center gap-4 px-4 py-3 rounded-xl cursor-pointer transition-all text-gray-300 hover:text-white hover:bg-white/5"
+        >
+          <LogOut size={20} />
+          <span className="text-sm">Sign Out</span>
+        </button>
       </nav>
     </div>
   );

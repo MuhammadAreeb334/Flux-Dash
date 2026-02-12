@@ -14,7 +14,7 @@ const Topbar = ({ menuOpen, setMenuOpen }) => {
           <button className="md:hidden" onClick={() => handleMenu()}>
             <Menu size={22} className="" />
           </button>
-          <h1 className=" text-lg md:text-3xl font-semibold tracking-tight">Dash Baord</h1> {/*{title} */}
+          <h1 className=" text-lg md:text-3xl font-semibold tracking-tight">DashBaord</h1> {/*{title} */}
           <DateRangeSelector />
         </div>
         <div className="flex items-center gap-2">

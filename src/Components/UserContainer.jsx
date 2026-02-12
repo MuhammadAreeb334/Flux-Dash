@@ -133,7 +133,7 @@ const UserContainer = () => {
           </div>
         </div>
 
-        <div className="w-full overflow-y-auto overflow-x-auto mt-6 rounded-xl">
+        <div className="w-full overflow-y-auto overflow-x-auto mt-6 rounded-xl pb-14">
           <table className="min-w-[900px] w-full text-left border-collapse">
             <thead className="bg-[#252533] text-gray-400 uppercase text-xs tracking-wider">
               <tr>
@@ -145,7 +145,7 @@ const UserContainer = () => {
                 <th className="px-4 py-4 font-semibold">Action</th>
               </tr>
             </thead>
-            <tbody className="divide-y divide-gray-800 text-gray-300">
+            <tbody className="divide-y divide-gray-800 text-gray-300 ">
               {users.map((user) => (
                 <tr
                   key={user.id}
@@ -181,7 +181,10 @@ const UserContainer = () => {
                           onClick={() => setOpenMenuId(null)}
                         ></div>
                         <div className="absolute right-6 top-12 bg-[#2a2a3a] border border-gray-700 rounded-lg shadow-xl z-20 w-32">
-                          <button className="flex items-center gap-2 w-full px-4 py-2 text-sm rounded-t-lg hover:bg-indigo-600 transition-colors">
+                          <button
+                            onClick={() => navigate(`/user/view/${user.id}`)}
+                            className="flex items-center gap-2 w-full px-4 py-2 text-sm rounded-t-lg hover:bg-indigo-600 transition-colors"
+                          >
                             <Eye size={14} /> View
                           </button>
                           <button className="flex items-center gap-2 w-full px-4 py-2 text-sm rounded-b-lg hover:bg-indigo-600 transition-colors border-t border-gray-700">
