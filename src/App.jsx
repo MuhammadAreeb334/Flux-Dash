@@ -6,6 +6,9 @@ import CreateUser from "./Pages/CreateUser";
 import ViewUser from "./Pages/ViewUser";
 import Login from "./Pages/Login";
 import Signup from "./Pages/Signup";
+import Ameer from "./Pages/Ameer";
+import CreateAmeer from "./Pages/CreateAmeer";
+import ViewAmeer from "./Pages/ViewAmeer";
 
 function App() {
   return (
@@ -18,8 +21,12 @@ function App() {
         <Route path="user" element={<UserPage />} />
         <Route path="/user/create" element={<CreateUser />} />
         <Route path="/user/view/:id" element={<ViewUser />} />
-        <Route path="messages" element={<div>Messages Page</div>} />
-        <Route path="customers" element={<div>Customers Page</div>} />
+        <Route path="/ameer" element={<Ameer />} />
+        <Route path="/ameer/create" element={<CreateAmeer />} />
+        <Route path="/ameer/view/:id" element={<ViewAmeer />} />
+        <Route path="settings" element={<div>Setting Page </div>} />
+        {/* <Route path="customers" element={<div>Customers Page</div>} /> */}
+        
       </Route>
     </Routes>
   );

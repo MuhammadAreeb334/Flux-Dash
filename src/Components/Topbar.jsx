@@ -5,7 +5,10 @@ import Profile from "../Assets/Profile.jpg";
 
 const Topbar = ({ menuOpen, setMenuOpen }) => {
   const handleMenu = () => setMenuOpen(!menuOpen);
-  console.log(menuOpen)
+  // console.log(menuOpen)
+
+const userRaw = localStorage.getItem("user");
+  const userInfo = userRaw ? JSON.parse(userRaw) : null;
 
   return (
     <div className="p-3 md:p-6">
@@ -25,7 +28,7 @@ const Topbar = ({ menuOpen, setMenuOpen }) => {
               className="w-full h-auto rounded-full aspect-square object-cover"
             />
           </div>
-          <span className="text-sm">Kristy Kamlykova</span>
+          <span className="text-sm">{userInfo?.name || "Guest User"}</span>
         </div>
       </div>
     </div>

@@ -3,9 +3,7 @@ import { Camera, Save, ChevronLeft } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 import { FireAPI } from "../API/useRequest";
 
-const CreateUser = () => {
-  // const [previewImage, setPreviewImage] = useState(null);
-  // const fileInputRef = useRef(null);
+const CreateAmeer = () => {
   const navigate = useNavigate();
   const [loading, setLoading] = useState(false);
   const [formData, setFormData] = useState({
@@ -19,31 +17,19 @@ const CreateUser = () => {
     permissions: "",
   });
 
-  // const handleImageChange = (e) => {
-  //   const file = e.target.files[0];
-  //   if (file) {
-  //     setPreviewImage(URL.createObjectURL(file));
-  //   }
-  // };
-
   const handlechange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    // console.log("Data being sent to backend:", formData);
     setLoading(true);
     try {
-      // console.log("Form Submitted:", formData);
-      // alert("User Created Successfully!");
       const token = localStorage.getItem("token");
       const customheader = {
         Authorization: `Bearer ${token}`,
       };
-      const data = await FireAPI("create-user", "POST", formData, customheader);
-      console.log("User Created: ", data);
-      alert("User Created Successfully!");
+      const data = await FireAPI("ameer", "POST", formData, customheader);
       setFormData({
         name: "",
         designation: "",
@@ -51,20 +37,15 @@ const CreateUser = () => {
         email: "",
         mobile: "",
         password: "",
-        // role: "",
         permissions: "",
       });
-      navigate("/user");
+      navigate("/ameer");
+      //   console.log("Ameer Created: ", data);
     } catch (error) {
       console.error("Creation Error:", error);
     } finally {
       setLoading(false);
     }
-    // setPreviewImage(null);
-
-    // if (fileInputRef.current) {
-    //   fileInputRef.current.value = null;
-    // }
   };
 
   return (
@@ -77,34 +58,34 @@ const CreateUser = () => {
           >
             <ChevronLeft size={28} />
           </button>
-          <h2 className="text-2xl font-semibold">Create New User</h2>
+          <h2 className="text-2xl font-semibold">Create New Ameer</h2>
         </div>
         <form onSubmit={handleSubmit} className="space-y-2">
           {/* <div className="flex flex-col items-center">
-            <label
-              htmlFor="photo"
-              className="w-28 h-28 rounded-full bg-[#2a2a3a] flex items-center justify-center border-2 border-dashed border-gray-500 cursor-pointer hover:border-indigo-500 transition"
-            >
-              {previewImage ? (
-                <img
-                  src={previewImage}
-                  alt="preview"
-                  className="w-full h-full rounded-full object-cover"
-                />
-              ) : (
-                <Camera size={28} className="text-gray-400" />
-              )}
-              <input
-                type="file"
-                id="photo"
-                accept="image/*"
-                className="hidden"
-                ref={fileInputRef}
-                onChange={handleImageChange}
-              />
-            </label>
-            <p className="text-sm text-gray-400 mt-2">Upload Photo</p>
-          </div> */}
+                <label
+                  htmlFor="photo"
+                  className="w-28 h-28 rounded-full bg-[#2a2a3a] flex items-center justify-center border-2 border-dashed border-gray-500 cursor-pointer hover:border-indigo-500 transition"
+                >
+                  {previewImage ? (
+                    <img
+                      src={previewImage}
+                      alt="preview"
+                      className="w-full h-full rounded-full object-cover"
+                    />
+                  ) : (
+                    <Camera size={28} className="text-gray-400" />
+                  )}
+                  <input
+                    type="file"
+                    id="photo"
+                    accept="image/*"
+                    className="hidden"
+                    ref={fileInputRef}
+                    onChange={handleImageChange}
+                  />
+                </label>
+                <p className="text-sm text-gray-400 mt-2">Upload Photo</p>
+              </div> */}
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
             <div>
               <label className="block text-sm font-medium mb-2">
@@ -147,9 +128,7 @@ const CreateUser = () => {
               />
             </div>
             <div>
-              <label className="block text-sm font-medium mb-2">
-                Country
-              </label>
+              <label className="block text-sm font-medium mb-2">Country</label>
               <input
                 type="text"
                 name="country"
@@ -206,26 +185,26 @@ const CreateUser = () => {
             </div> */}
 
             {/* <div>
-              <label className="block text-sm font-medium mb-2">Role</label>
-              <select
-                name="role"
-                value={formData.role}
-                onChange={handlechange}
-                className="w-full bg-[#2a2a3a] border border-gray-600 rounded-lg px-4 py-2 outline-none focus:border-indigo-500 transition"
-                required
-              >
-                <option value="">Select role</option>
-                <option value="admin">Admin</option>
-                <option value="manager">User</option>
-              </select>
-            </div> */}
+                  <label className="block text-sm font-medium mb-2">Role</label>
+                  <select
+                    name="role"
+                    value={formData.role}
+                    onChange={handlechange}
+                    className="w-full bg-[#2a2a3a] border border-gray-600 rounded-lg px-4 py-2 outline-none focus:border-indigo-500 transition"
+                    required
+                  >
+                    <option value="">Select role</option>
+                    <option value="admin">Admin</option>
+                    <option value="manager">User</option>
+                  </select>
+                </div> */}
           </div>
           <button
             type="submit"
             className="flex items-center gap-2 bg-indigo-600 hover:bg-indigo-700 px-6 py-2 rounded-lg font-medium transition-all"
           >
             <Save size={18} />
-            Create User
+            Create Ameer
           </button>
         </form>
       </div>
@@ -233,4 +212,4 @@ const CreateUser = () => {
   );
 };
 
-export default CreateUser;
+export default CreateAmeer;

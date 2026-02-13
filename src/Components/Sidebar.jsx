@@ -4,7 +4,7 @@ import { NavLink, useNavigate } from "react-router-dom";
 import {
   LayoutDashboard,
   Users,
-  Mail,
+  HatGlasses,
   User,
   Settings,
   LogOut,
@@ -24,8 +24,8 @@ const Sidebar = ({ menuOpen, setMenuOpen }) => {
   const menuItems = [
     { name: "Analytics", icon: <LayoutDashboard size={20} />, path: "/" },
     { name: "User", icon: <Users size={20} />, path: "/user" },
-    { name: "Messages", icon: <Mail size={20} />, path: "/messages" },
-    { name: "Customers", icon: <User size={20} />, path: "/customers" },
+    { name: "Ameer", icon: <HatGlasses size={20} />, path: "/ameer" },
+    // { name: "Customers", icon: <User size={20} />, path: "/customers" },
   ];
 
   return (
