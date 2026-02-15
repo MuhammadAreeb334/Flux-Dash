@@ -33,6 +33,8 @@ const Signup = () => {
 
   const handleSignup = async (e) => {
     e.preventDefault();
+    if (loading) return;
+
     setLoading(true);
     try {
       const data = await FireAPI("signup", "POST", formData);
@@ -206,8 +208,14 @@ const Signup = () => {
             </div>
 
             <button
+              disabled={loading}
               type="submit"
-              className="w-full bg-indigo-600 hover:bg-indigo-700 text-white font-semibold py-3 rounded-xl transition-all shadow-lg shadow-indigo-500/20 active:scale-[0.98] flex items-center justify-center gap-2 mt-4"
+              className={`w-full font-semibold py-3.5 rounded-xl transition-all shadow-lg 
+                ${
+                  loading
+                    ? "bg-gray-600 cursor-not-allowed opacity-70"
+                    : "bg-indigo-600 hover:bg-indigo-700 shadow-indigo-500/20 active:scale-[0.98]"
+                } text-white active:scale-[0.98] flex items-center justify-center gap-2 mt-4`}
             >
               <ShieldCheck size={18} />
               Create Account

@@ -12,6 +12,7 @@ const Login = () => {
 
   const handleLogin = async (e) => {
     e.preventDefault();
+    if (loading) return;
     setLoading(true);
 
     try {
@@ -89,7 +90,12 @@ const Login = () => {
             <button
               disabled={loading}
               type="submit"
-              className="w-full bg-indigo-600 hover:bg-indigo-700 text-white font-semibold py-3.5 rounded-xl transition-all shadow-lg shadow-indigo-500/20 active:scale-[0.98]"
+              className={`w-full font-semibold py-3.5 rounded-xl transition-all shadow-lg 
+                ${
+                  loading
+                    ? "bg-gray-600 cursor-not-allowed opacity-70"
+                    : "bg-indigo-600 hover:bg-indigo-700 shadow-indigo-500/20 active:scale-[0.98]"
+                } text-white`}
             >
               {loading ? "Checking..." : "Login"}
             </button>

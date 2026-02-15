@@ -1,11 +1,12 @@
 import React, { useState, useRef } from "react";
-import { Camera, Save, ChevronLeft } from "lucide-react";
+import { Camera, Save, ChevronLeft, EyeOff, Eye } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 import { FireAPI } from "../API/useRequest";
 
 const CreateAmeer = () => {
   const navigate = useNavigate();
   const [loading, setLoading] = useState(false);
+  const [showPassword, setShowPassword] = useState(false);
   const [formData, setFormData] = useState({
     name: "",
     designation: "",
@@ -23,6 +24,8 @@ const CreateAmeer = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    if (loading) return;
+
     setLoading(true);
     try {
       const token = localStorage.getItem("token");
@@ -97,7 +100,7 @@ const CreateAmeer = () => {
                 placeholder="Enter Your Full Name"
                 value={formData.name}
                 onChange={handlechange}
-                className="w-full bg-[#2a2a3a] border border-gray-600 rounded-lg px-4 py-2 outline-none focus:border-indigo-500 transition"
+                className="w-full bg-[#12121e] border border-gray-600 rounded-lg px-4 py-2 outline-none focus:border-indigo-500 transition"
                 required
               />
             </div>
@@ -109,7 +112,7 @@ const CreateAmeer = () => {
                 placeholder="Enter Your Email"
                 value={formData.email}
                 onChange={handlechange}
-                className="w-full bg-[#2a2a3a] border border-gray-600 rounded-lg px-4 py-2 outline-none focus:border-indigo-500 transition"
+                className="w-full bg-[#12121e] border border-gray-600 rounded-lg px-4 py-2 outline-none focus:border-indigo-500 transition"
                 required
               />
             </div>
@@ -123,7 +126,7 @@ const CreateAmeer = () => {
                 placeholder="Enter Your Mobile Number"
                 value={formData.mobile}
                 onChange={handlechange}
-                className="w-full bg-[#2a2a3a] border border-gray-600 rounded-lg px-4 py-2 outline-none focus:border-indigo-500 transition"
+                className="w-full bg-[#12121e] border border-gray-600 rounded-lg px-4 py-2 outline-none focus:border-indigo-500 transition"
                 required
               />
             </div>
@@ -135,7 +138,7 @@ const CreateAmeer = () => {
                 placeholder="Enter Your Country"
                 value={formData.country}
                 onChange={handlechange}
-                className="w-full bg-[#2a2a3a] border border-gray-600 rounded-lg px-4 py-2 outline-none focus:border-indigo-500 transition"
+                className="w-full bg-[#12121e] border border-gray-600 rounded-lg px-4 py-2 outline-none focus:border-indigo-500 transition"
                 required
               />
             </div>
@@ -149,21 +152,29 @@ const CreateAmeer = () => {
                 placeholder="Enter Designation"
                 value={formData.designation}
                 onChange={handlechange}
-                className="w-full bg-[#2a2a3a] border border-gray-600 rounded-lg px-4 py-2 outline-none focus:border-indigo-500 transition"
+                className="w-full bg-[#12121e] border border-gray-600 rounded-lg px-4 py-2 outline-none focus:border-indigo-500 transition"
                 required
               />
             </div>
-            <div>
+
+            <div className="relative group">
               <label className="block text-sm font-medium mb-2">Password</label>
               <input
-                type="password"
+                type={showPassword ? "text" : "password"}
                 name="password"
-                placeholder="Enter Your Password"
+                placeholder="••••••••"
                 value={formData.password}
                 onChange={handlechange}
-                className="w-full bg-[#2a2a3a] border border-gray-600 rounded-lg px-4 py-2 outline-none focus:border-indigo-500 transition"
+                className="w-full bg-[#12121e] border border-gray-600 rounded-lg px-4 py-2 outline-none focus:border-indigo-500 transition"
                 required
               />
+              <button
+                type="button"
+                onClick={() => setShowPassword(!showPassword)}
+                className="absolute right-3 top-10  text-gray-500 hover:text-gray-300 transition-colors"
+              >
+                {showPassword ? <EyeOff size={20} /> : <Eye size={20} />}
+              </button>
             </div>
 
             {/* <div>
@@ -200,8 +211,14 @@ const CreateAmeer = () => {
                 </div> */}
           </div>
           <button
+            disabled={loading}
             type="submit"
-            className="flex items-center gap-2 bg-indigo-600 hover:bg-indigo-700 px-6 py-2 rounded-lg font-medium transition-all"
+            className={`px-4 py-2 font-semibold rounded-xl transition-all shadow-lg 
+                ${
+                  loading
+                    ? "bg-gray-600 cursor-not-allowed opacity-70"
+                    : "bg-indigo-600 hover:bg-indigo-700 shadow-indigo-500/20 active:scale-[0.98]"
+                } text-white active:scale-[0.98] flex items-center justify-center gap-2 mt-4`}
           >
             <Save size={18} />
             Create Ameer

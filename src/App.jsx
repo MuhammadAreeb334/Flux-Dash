@@ -9,6 +9,7 @@ import Signup from "./Pages/Signup";
 import Ameer from "./Pages/Ameer";
 import CreateAmeer from "./Pages/CreateAmeer";
 import ViewAmeer from "./Pages/ViewAmeer";
+import Settings from "./Pages/Settings";
 
 function App() {
   return (
@@ -24,7 +25,7 @@ function App() {
         <Route path="/ameer" element={<Ameer />} />
         <Route path="/ameer/create" element={<CreateAmeer />} />
         <Route path="/ameer/view/:id" element={<ViewAmeer />} />
-        <Route path="settings" element={<div>Setting Page </div>} />
+        <Route path="settings" element={<Settings />} />
         {/* <Route path="customers" element={<div>Customers Page</div>} /> */}
         
       </Route>
