@@ -100,8 +100,18 @@ const Login = () => {
               {loading ? "Checking..." : "Login"}
             </button>
           </form>
-
+          
           <p className="text-center text-gray-500 text-sm mt-8">
+            Don't remember your password{" "}
+            <button
+              onClick={() => navigate("/signup")}
+              className="text-indigo-400 font-medium hover:underline"
+            >
+              Forget Password
+            </button>
+          </p>
+
+          <p className="text-center text-gray-500 text-sm">
             Don't have an account?{" "}
             <button
               onClick={() => navigate("/signup")}
